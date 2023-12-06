@@ -36,7 +36,6 @@ int compareNumbers(string[] winNumbers, string[] inputNumbers, string[] input)
         matches = 0;
         for (int i = 0; i < winNumbers.Length; i++)
         {
-            winNumbers[i] = winNumbers[i].Trim();
             for (int j = 0; j < inputNumbers.Length; j++)
             {
                 inputNumbers[j] = inputNumbers[j].Trim();

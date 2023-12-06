@@ -1,0 +1,83 @@
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.IO;
+using System.Security.Cryptography.X509Certificates;
+using System.Xml;
+
+string[] cards = File.ReadAllLines("day.4.txt");
+int[] cardMatches = new int[cards.Length];
+int[] cardsCount = new int[cards.Length];
+string[] winNumbers = new string[cards.Length];
+string[] inputNumbers = new string[cards.Length];
+int[] calculatedCards = new int[cards.Length];
+
+
+for (int i = 0; i < cardsCount.Length; i++)
+{
+    cardsCount[i] = 1;
+}
+
+SanityCheck(cards);
+int result2 = 0;
+
+
+cardMatches = splitCards(cards);
+calculatedCards = calcCards(cardMatches, cardsCount);
+Result_2(calculatedCards);
+Console.WriteLine($"result 2 is {result2}");
+
+
+int[] splitCards(string[] cards)
+{
+    for (int i = 0; i < cards.Length; i++)
+    {
+        string cardNum = cards[i].Split(":")[0];
+        cards[i] = cards[i].Split(": ")[1];
+
+
+        winNumbers = cards[i].Split(" |")[0].Split(" ", StringSplitOptions.RemoveEmptyEntries);
+
+        inputNumbers = cards[i].Split("| ")[1].Split(" ", StringSplitOptions.RemoveEmptyEntries);
+
+        int result = inputNumbers.Intersect(winNumbers).Count();
+        cardMatches[i] = result;
+
+    }
+    return cardMatches;
+}
+
+
+int[] calcCards(int[] matches, int[] cards)
+{
+    for (int i = 0; i < matches.Length; i++)
+    {
+        if (matches[i] > 0)
+        {
+            for (int j = 1; j <= matches[i]; j++)
+            {
+                cards[i + j] += cards[i];
+
+            }
+        }
+    }
+    return cards;
+}
+
+
+int Result_2(int[] cardsCount)
+{
+
+    for (int j = 0; j < cardsCount.Length; j++)
+    {
+        result2 += cardsCount[j];
+    }
+
+
+    return result2;
+}
+
+static void SanityCheck(string[] inputLines)
+{
+    //  int lastIndex = inputLines.Last();  -->not parsable
+    Console.WriteLine($"{inputLines.Length} lines read,\n first entry is {inputLines[0]}\n last entry is " + inputLines.Last());
+}
