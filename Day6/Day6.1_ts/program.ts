@@ -24,8 +24,6 @@ function calculateCounter(time: number[], distance: number[]): number {
 }
 
 
-
-// Beispielaufruf
 let time : number[] = [7, 15, 30,];
 let distance : number[] = [9, 40, 200];
 
