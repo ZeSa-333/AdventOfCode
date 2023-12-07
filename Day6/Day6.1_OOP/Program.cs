@@ -19,9 +19,8 @@ public class Race
         for (int j = 0; j < time; j++)
         {
             int timeLeft = time - j;
-            int myDistance = j * timeLeft;
 
-            if (myDistance > distance)
+            if (j * timeLeft > distance)
             {
                 result++;
             }
