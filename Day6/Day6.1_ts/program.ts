@@ -5,7 +5,6 @@ console.log(anExampleVariable)
 function calculateCounter(time: number[], distance: number[]): number {
     let result : number = 1;
 
-
     for (let i = 0; i < time.length; i++)
     {
     let counter = 0;
@@ -25,10 +24,11 @@ function calculateCounter(time: number[], distance: number[]): number {
 
 
 
-// Beispielaufruf
+// No fixed Index after initialising the array
 let time : number[] = [7, 15, 30,];
 let distance : number[] = [9, 40, 200];
 
+// int doesn't exist in typescript...use let instead
 let result = calculateCounter(time, distance);
 
 console.log(result);
