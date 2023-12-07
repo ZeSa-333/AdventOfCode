@@ -27,31 +27,31 @@ public class Race
         }
         return result;
     }
-}
 
-public class MainClass
-{
-
-    public static void Main(string[] args)
+    public class MainClass
     {
-        if (args.Length >= 1)
-        {
-            string[] input = File.ReadAllLines(args[0]);
-            //Console.WriteLine(input[0]);
-            int[] time = Array.ConvertAll(input[0].Split(":   ")[1].Split("  ", StringSplitOptions.RemoveEmptyEntries), int.Parse);
-            int[] distance = Array.ConvertAll(input[1].Split(":  ")[1].Split(" ", StringSplitOptions.RemoveEmptyEntries), int.Parse);
 
-            int product = 1;
-            for (int i = 0; i < time.Length; i++)
-            {
-                Race r = new Race(time[i], distance[i]);
-                product *= r.HowOften();
-            }
-            Console.WriteLine(product);
-        }
-        else
+        public static void Main(string[] args)
         {
-            Console.WriteLine("Please provide the puzzle file!");
+            if (args.Length >= 1)
+            {
+                string[] input = File.ReadAllLines(args[0]);
+                //Console.WriteLine(input[0]);
+                int[] time = Array.ConvertAll(input[0].Split(":   ")[1].Split("  ", StringSplitOptions.RemoveEmptyEntries), int.Parse);
+                int[] distance = Array.ConvertAll(input[1].Split(":  ")[1].Split(" ", StringSplitOptions.RemoveEmptyEntries), int.Parse);
+
+                double product = 1;
+                for (int i = 0; i < time.Length; i++)
+                {
+                    Race r = new Race(time[i], distance[i]);
+                    product *= r.HowOften();
+                }
+                Console.WriteLine(product);
+            }
+            else
+            {
+                Console.WriteLine("Please provide the puzzle file!");
+            }
         }
     }
 }
